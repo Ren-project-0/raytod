@@ -15,7 +15,7 @@ export default function Footer() {
           <Link href="https://instagram.com/renproject" target="_blank" rel="noopener noreferrer" aria-label="Instagram Ren Project Studio" className="text-secondary-foreground hover:text-accent transition-colors">
             <Instagram size={24} />
           </Link>
-          <Link href="mailto:info@renproject.studio" aria-label="Email Ren Project Studio" className="text-secondary-foreground hover:text-accent transition-colors">
+          <Link href="mailto:Yosha2240@gmail.com" aria-label="Email Ren Project Studio" className="text-secondary-foreground hover:text-accent transition-colors">
             <Mail size={24} />
           </Link>
         </div>

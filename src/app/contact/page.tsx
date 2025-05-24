@@ -59,9 +59,9 @@ export default function ContactPage() {
               <Mail className="h-8 w-8 text-accent mt-1 shrink-0" />
               <div>
                 <h3 className="font-semibold text-lg text-foreground">Email</h3>
-                <p className="text-muted-foreground">info@renproject.studio (Placeholder)</p>
+                <p className="text-muted-foreground">Yosha2240@gmail.com</p>
                  <Button asChild variant="outline" size="sm" className="mt-2 border-primary text-primary hover:bg-primary/10">
-                  <Link href="mailto:info@renproject.studio">
+                  <Link href="mailto:Yosha2240@gmail.com">
                     Kirim Email
                   </Link>
                 </Button>
