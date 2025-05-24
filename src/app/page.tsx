@@ -1,106 +1,121 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import ProductCard from '@/components/products/ProductCard';
-import { products, categories } from '@/data/products';
-import { ArrowRight, Zap } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import ArtCard from '@/components/gallery/ArtCard'; // Changed from ProductCard
+import { galleryItems } from '@/data/gallery'; // Changed from products
+import { ArrowRight, Palette, Edit3, Sparkles } from 'lucide-react'; // Changed Zap to Palette/Edit3/Sparkles
 
 export default function HomePage() {
-  const featuredProducts = products.slice(0, 3); // Show first 3 products as featured
+  const featuredArtworks = galleryItems.slice(0, 4); // Show first 4 artworks as featured
 
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="relative h-[calc(70vh-80px)] min-h-[400px] max-h-[600px] w-full flex items-center justify-center text-center rounded-xl overflow-hidden shadow-2xl">
+      <section className="relative h-[calc(70vh-80px)] min-h-[450px] max-h-[650px] w-full flex items-center justify-center text-center rounded-xl overflow-hidden shadow-2xl">
         <Image
           src="https://placehold.co/1920x800.png"
-          alt="Banner RenCart"
+          alt="Banner RenArt Studio - Ilustrasi Custom"
           layout="fill"
           objectFit="cover"
           priority
           className="brightness-50"
-          data-ai-hint="craft workshop"
+          data-ai-hint="digital art portfolio" // Updated hint
         />
-        <div className="relative z-10 p-6 space-y-6 max-w-2xl">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-background">
-            RenCart
+        <div className="relative z-10 p-6 space-y-6 max-w-3xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-background drop-shadow-md">
+            Buka Jasa Ilustrasi Custom
           </h1>
-          <p className="text-xl sm:text-2xl text-background/90">
-            Kreasi Kustom, Unik Milikmu.
+          <p className="text-xl sm:text-2xl text-background/90 drop-shadow-sm">
+            Bergaya, Unik, dan Personal — Wujudkan Imajinasimu Bersama Kami!
           </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-lg px-8 py-6 rounded-lg shadow-md transition-transform hover:scale-105">
-            <Link href="/catalog">
-              Lihat Katalog
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-lg px-8 py-3 rounded-lg shadow-md transition-transform hover:scale-105">
+              <Link href="/commission-info">
+                Pesan Sekarang
+                <Edit3 className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="text-background border-background/80 hover:bg-background/10 hover:text-background font-semibold text-lg px-8 py-3 rounded-lg shadow-md transition-transform hover:scale-105">
+              <Link href="/gallery">
+                Lihat Galeri
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* Featured Products Section */}
+      {/* Featured Artworks Section */}
       <section className="space-y-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
-            <Zap className="h-8 w-8 text-accent" /> Produk Unggulan
+            <Sparkles className="h-8 w-8 text-accent" /> Contoh Karya Unggulan
           </h2>
-          <p className="text-lg text-muted-foreground">Pilihan terbaik dari koleksi kami.</p>
+          <p className="text-lg text-muted-foreground">Beberapa hasil ilustrasi terbaik dari RenArt Studio.</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {featuredArtworks.map((art) => (
+            <ArtCard key={art.id} item={art} />
           ))}
         </div>
-        <div className="text-center mt-6">
-          <Button asChild variant="outline" size="lg">
-            <Link href="/catalog">
-              Lihat Semua Produk
+        <div className="text-center mt-8">
+          <Button asChild variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5">
+            <Link href="/gallery">
+              Jelajahi Semua Karya
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </div>
       </section>
-
-      {/* Categories Section */}
-      <section className="space-y-8">
+      
+      {/* Why Choose Us Section */}
+      <section className="space-y-8 py-12 bg-secondary rounded-lg shadow-md">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-primary mb-2">Kategori Kami</h2>
-          <p className="text-lg text-muted-foreground">Jelajahi produk berdasarkan kategori.</p>
+          <h2 className="text-3xl font-bold text-primary mb-2">Kenapa Memilih RenArt Studio?</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Kami berdedikasi untuk memberikan karya seni digital berkualitas tinggi yang sesuai dengan visi Anda.</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((category) => (
-            <Link key={category} href={`/catalog?category=${category}`}>
-              <Card className="hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden group">
-                <CardHeader className="p-0 relative aspect-video">
-                   <Image 
-                    src={`https://placehold.co/400x225.png?text=${category}`} 
-                    alt={category} 
-                    layout="fill" 
-                    objectFit="cover"
-                    data-ai-hint={`${category.toLowerCase()} products`}
-                    className="group-hover:scale-105 transition-transform duration-300"
-                  />
-                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-300"></div>
-                </CardHeader>
-                <CardContent className="p-4 text-center">
-                  <CardTitle className="text-xl font-semibold text-primary group-hover:text-accent transition-colors">
-                    {category}
-                  </CardTitle>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+          <Card className="text-center bg-card shadow-sm">
+            <CardHeader>
+              <Palette className="h-12 w-12 text-accent mx-auto mb-3" />
+              <CardTitle className="text-xl text-primary">Gaya Beragam</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">Dari chibi, anime, hingga digital painting. Kami siap melayani berbagai preferensi gaya visual Anda.</p>
+            </CardContent>
+          </Card>
+          <Card className="text-center bg-card shadow-sm">
+            <CardHeader>
+              <CheckCircle className="h-12 w-12 text-accent mx-auto mb-3" />
+              <CardTitle className="text-xl text-primary">Kualitas Terjamin</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">Detail, komposisi, dan warna adalah prioritas kami untuk menghasilkan karya yang memuaskan.</p>
+            </CardContent>
+          </Card>
+          <Card className="text-center bg-card shadow-sm">
+            <CardHeader>
+              <Users className="h-12 w-12 text-accent mx-auto mb-3" />
+              <CardTitle className="text-xl text-primary">Kolaborasi Mudah</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">Proses diskusi dan revisi yang transparan untuk memastikan hasil akhir sesuai ekspektasi Anda.</p>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
+
       {/* Call to Action Section */}
-      <section className="bg-secondary py-12 rounded-lg shadow-md">
+      <section className="py-12 rounded-lg shadow-md bg-gradient-to-r from-primary to-accent text-primary-foreground">
         <div className="container mx-auto px-4 text-center space-y-4">
-          <h2 className="text-3xl font-bold text-primary">Punya Ide Kustom Sendiri?</h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Jangan ragu untuk menghubungi kami. Tim RenCart siap membantu mewujudkan desain impian Anda menjadi produk nyata berkualitas.
+          <h2 className="text-3xl font-bold">Punya Ide Ilustrasi?</h2>
+          <p className="text-lg max-w-xl mx-auto text-primary-foreground/90">
+            Jangan ragu untuk menghubungi kami. Tim RenArt Studio siap membantu mewujudkan konsep dan karakter impian Anda menjadi karya seni digital yang memukau.
           </p>
-          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold text-lg px-8 py-6 rounded-lg shadow-md transition-transform hover:scale-105">
+          <Button asChild size="lg" className="bg-background hover:bg-background/90 text-primary font-semibold text-lg px-8 py-3 rounded-lg shadow-md transition-transform hover:scale-105 mt-4">
             <Link href="/contact">
               Hubungi Kami Sekarang
             </Link>
@@ -110,3 +125,6 @@ export default function HomePage() {
     </div>
   );
 }
+
+// Helper component, assuming Users icon is needed
+import { Users, CheckCircle } from 'lucide-react';

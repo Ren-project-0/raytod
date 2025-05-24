@@ -1,3 +1,4 @@
+
 import type {Metadata} from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -16,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'RenCart - Kreasi Kustom Unik',
-  description: 'Ren Project menjual produk custom seperti sablon kaos, akrilik, dan merchandise lainnya.',
+  title: 'RenArt Studio - Jasa Ilustrasi Custom Profesional',
+  description: 'RenArt Studio menyediakan jasa ilustrasi custom berbagai gaya: digital art, chibi, anime, desain merchandise, dan lainnya. Wujudkan imajinasimu!',
 };
 
 export default function RootLayout({
@@ -26,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
+    <html lang="id">
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen bg-background text-foreground`}>
         <Header />
         <main className="flex-grow container mx-auto px-4 py-8">
           {children}

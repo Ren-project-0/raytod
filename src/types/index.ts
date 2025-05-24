@@ -10,3 +10,14 @@ export interface Product {
   imageUrl: string;
   imageHint?: string;
 }
+
+export type ArtStyle = "Chibi" | "Anime Style" | "Digital Painting" | "Vector Art" | "Sketsa";
+
+export interface GalleryItem {
+  id: string;
+  title: string;
+  description: string;
+  style: ArtStyle;
+  imageUrl: string;
+  imageHint?: string; // e.g., "chibi character", "anime portrait"
+}
