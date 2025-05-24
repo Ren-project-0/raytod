@@ -21,7 +21,7 @@ export default function HomePage() {
           objectFit="cover"
           priority
           className="brightness-50"
-          data-ai-hint="digital art portfolio"
+          data-ai-hint="anime character illustration"
         />
         <div className="relative z-10 p-6 space-y-6 max-w-3xl">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-background drop-shadow-md">
