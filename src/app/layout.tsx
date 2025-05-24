@@ -5,6 +5,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
+import { AuthProvider } from '@/contexts/AuthContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -18,7 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Ren Project Studio - Jasa Ilustrasi Custom Profesional',
-  description: 'Ren Project Studio menyediakan jasa ilustrasi custom berbagai gaya: digital art, chibi, anime, desain merchandise, dan lainnya. Wujudkan imajinasimu!',
+  description: 'Ren Project Studio menyediakan jasa ilustrasi custom berbagai gaya: digital art, chibi, anime-style, desain merchandise, dan lainnya. Wujudkan imajinasimu!',
 };
 
 export default function RootLayout({
@@ -29,12 +30,14 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen bg-background text-foreground`}>
-        <Header />
-        <main className="flex-grow container mx-auto px-4 py-8">
-          {children}
-        </main>
-        <Footer />
-        <Toaster />
+        <AuthProvider>
+          <Header />
+          <main className="flex-grow container mx-auto px-4 py-8">
+            {children}
+          </main>
+          <Footer />
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );

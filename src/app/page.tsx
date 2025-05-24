@@ -1,6 +1,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import './page.css';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import ArtCard from '@/components/gallery/ArtCard';
@@ -15,13 +16,14 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative h-[calc(70vh-80px)] min-h-[450px] max-h-[650px] w-full flex items-center justify-center text-center rounded-xl overflow-hidden shadow-2xl">
         <Image
-          src="https://placehold.co/1920x800.png"
+          src="/gallery/baner.jpg"
           alt="Banner Ren Project Studio - Ilustrasi Custom"
           layout="fill"
           objectFit="cover"
           priority
-          className="brightness-50"
+          className='baner'
           data-ai-hint="anime character illustration"
+       
         />
         <div className="relative z-10 p-6 space-y-6 max-w-3xl">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-background drop-shadow-md">

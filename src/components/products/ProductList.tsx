@@ -1,14 +1,17 @@
+
 "use client";
 
 import { useState, useMemo, useEffect } from 'react';
 import type { Product, ProductCategory } from '@/types';
-import { products as allProducts, categories as allCategories } from '@/data/products';
+import { getProducts, getCategories } from '@/data/products'; // Updated import
 import ProductCard from './ProductCard';
 import ProductSearch from './ProductSearch';
 import CategoryFilter from './CategoryFilter';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ProductList() {
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [allCategories, setAllCategories] = useState<ProductCategory[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory | 'All'>('All');
   const [isLoading, setIsLoading] = useState(true);
@@ -16,31 +19,45 @@ export default function ProductList() {
 
   useEffect(() => {
     setMounted(true);
-    // Simulate loading delay
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500); // Adjust delay as needed
-    return () => clearTimeout(timer);
+    async function fetchData() {
+      setIsLoading(true);
+      try {
+        const [productsData, categoriesData] = await Promise.all([
+          getProducts(),
+          getCategories()
+        ]);
+        setAllProducts(productsData);
+        setAllCategories(categoriesData);
+      } catch (error) {
+        console.error("Failed to fetch product data:", error);
+        // Handle error appropriately, e.g., show a toast
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchData();
   }, []);
 
   const filteredProducts = useMemo(() => {
+    if (isLoading) return []; // Return empty or skeleton if still loading initial data
     return allProducts.filter(product => {
       const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                 product.description.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
       return matchesSearchTerm && matchesCategory;
     });
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm, selectedCategory, allProducts, isLoading]);
 
   if (!mounted) {
-     // Render skeleton or null during SSR to prevent hydration mismatch for client-side logic
+    // Render skeleton or null during SSR to prevent hydration mismatch
     return (
       <div>
         <div className="mb-6">
           <Skeleton className="h-10 w-full md:w-1/2 lg:w-1/3" />
         </div>
         <div className="mb-6 flex flex-wrap gap-2">
-          {['All', ...allCategories].map(cat => <Skeleton key={cat} className="h-10 w-24" />)}
+          {/* Placeholder for categories skeleton */}
+          {['All', 'Kaos', 'Akrilik', 'Merchandise'].map(cat => <Skeleton key={cat} className="h-10 w-24" />)}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {Array.from({ length: 8 }).map((_, index) => (
@@ -59,7 +76,6 @@ export default function ProductList() {
       </div>
     );
   }
-
 
   return (
     <div>

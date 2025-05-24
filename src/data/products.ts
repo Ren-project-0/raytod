@@ -1,8 +1,10 @@
+
 import type { Product, ProductCategory } from '@/types';
 
-export const categories: ProductCategory[] = ["Kaos", "Akrilik", "Merchandise"];
+// This data will eventually come from Firestore
+const staticCategories: ProductCategory[] = ["Kaos", "Akrilik", "Merchandise"];
 
-export const products: Product[] = [
+const staticProducts: Product[] = [
   {
     id: "1",
     name: "Kaos Sablon Custom",
@@ -76,3 +78,16 @@ export const products: Product[] = [
     imageHint: "acrylic display"
   },
 ];
+
+// Simulate fetching data from a database
+export async function getCategories(): Promise<ProductCategory[]> {
+  // In a real app, this would fetch from Firestore
+  // await new Promise(resolve => setTimeout(resolve, 500)); // Simulate delay
+  return Promise.resolve(staticCategories);
+}
+
+export async function getProducts(): Promise<Product[]> {
+  // In a real app, this would fetch from Firestore
+  // await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate delay
+  return Promise.resolve(staticProducts);
+}
