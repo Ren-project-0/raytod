@@ -51,7 +51,7 @@ export default function HomePage() {
       <section className="space-y-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
-            <Sparkles className="h-8 w-8 text-accent" /> Contoh Karya Unggulan
+            <Sparkles className="h-8 w-8 text-accent" /> Art Sample
           </h2>
           <p className="text-lg text-muted-foreground">Beberapa hasil ilustrasi terbaik dari Ren Project Studio.</p>
         </div>
