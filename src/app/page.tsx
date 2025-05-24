@@ -25,7 +25,7 @@ export default function HomePage() {
         />
         <div className="relative z-10 p-6 space-y-6 max-w-3xl">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-background drop-shadow-md">
-            Buka Jasa Ilustrasi Custom
+            REN ART COMMISION
           </h1>
           <p className="text-xl sm:text-2xl text-background/90 drop-shadow-sm">
             Bergaya, Unik, dan Personal — Wujudkan Imajinasimu Bersama Kami!
