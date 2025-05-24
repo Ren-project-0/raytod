@@ -2,8 +2,8 @@
 import ArtGallery from '@/components/gallery/ArtGallery';
 
 export const metadata = {
-  title: 'Galeri Karya - RenArt Studio',
-  description: 'Lihat portofolio ilustrasi custom dari RenArt Studio. Temukan inspirasi untuk proyek Anda dari berbagai gaya seperti chibi, anime, digital painting, dan lainnya.',
+  title: 'Galeri Karya - Ren Project Studio',
+  description: 'Lihat portofolio ilustrasi custom dari Ren Project Studio. Temukan inspirasi untuk proyek Anda dari berbagai gaya seperti chibi, anime, digital painting, dan lainnya.',
 };
 
 export default function GalleryPage() {

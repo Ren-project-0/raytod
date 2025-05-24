@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'RenArt Studio - Jasa Ilustrasi Custom Profesional',
-  description: 'RenArt Studio menyediakan jasa ilustrasi custom berbagai gaya: digital art, chibi, anime, desain merchandise, dan lainnya. Wujudkan imajinasimu!',
+  title: 'Ren Project Studio - Jasa Ilustrasi Custom Profesional',
+  description: 'Ren Project Studio menyediakan jasa ilustrasi custom berbagai gaya: digital art, chibi, anime, desain merchandise, dan lainnya. Wujudkan imajinasimu!',
 };
 
 export default function RootLayout({

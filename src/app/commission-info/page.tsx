@@ -6,8 +6,8 @@ import Link from 'next/link';
 import { CheckCircle, HelpCircle, ShoppingCart, Edit3 } from 'lucide-react';
 
 export const metadata = {
-  title: 'Info Komisi Ilustrasi - RenArt Studio',
-  description: 'Pesan ilustrasi custom di RenArt Studio. Pelajari cara order, tipe ilustrasi, daftar harga, dan FAQ seputar jasa commission art kami.',
+  title: 'Info Komisi Ilustrasi - Ren Project Studio',
+  description: 'Pesan ilustrasi custom di Ren Project Studio. Pelajari cara order, tipe ilustrasi, daftar harga, dan FAQ seputar jasa commission art kami.',
 };
 
 const commissionTypes = [

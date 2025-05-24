@@ -6,8 +6,8 @@ import { Instagram, MessageCircle, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'Kontak & Pesan Ilustrasi - RenArt Studio',
-  description: 'Hubungi RenArt Studio untuk memesan ilustrasi custom, bertanya tentang layanan, atau memesan produk merchandise. Kami siap membantu!',
+  title: 'Kontak & Pesan Ilustrasi - Ren Project Studio',
+  description: 'Hubungi Ren Project Studio untuk memesan ilustrasi custom, bertanya tentang layanan, atau memesan produk merchandise. Kami siap membantu!',
 };
 
 export default function ContactPage() {
@@ -46,9 +46,9 @@ export default function ContactPage() {
               <Instagram className="h-8 w-8 text-accent mt-1 shrink-0" />
               <div>
                 <h3 className="font-semibold text-lg text-foreground">Instagram</h3>
-                <p className="text-muted-foreground">@renart.studio (Placeholder)</p>
+                <p className="text-muted-foreground">@renproject.studio (Placeholder)</p>
                  <Button asChild variant="outline" size="sm" className="mt-2 border-primary text-primary hover:bg-primary/10">
-                  <Link href="https://instagram.com/renart.studio" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://instagram.com/renproject.studio" target="_blank" rel="noopener noreferrer">
                     Kunjungi Instagram
                   </Link>
                 </Button>
@@ -59,9 +59,9 @@ export default function ContactPage() {
               <Mail className="h-8 w-8 text-accent mt-1 shrink-0" />
               <div>
                 <h3 className="font-semibold text-lg text-foreground">Email</h3>
-                <p className="text-muted-foreground">info@renart.studio (Placeholder)</p>
+                <p className="text-muted-foreground">info@renproject.studio (Placeholder)</p>
                  <Button asChild variant="outline" size="sm" className="mt-2 border-primary text-primary hover:bg-primary/10">
-                  <Link href="mailto:info@renart.studio">
+                  <Link href="mailto:info@renproject.studio">
                     Kirim Email
                   </Link>
                 </Button>

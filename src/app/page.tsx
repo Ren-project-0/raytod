@@ -3,12 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import ArtCard from '@/components/gallery/ArtCard'; // Changed from ProductCard
-import { galleryItems } from '@/data/gallery'; // Changed from products
-import { ArrowRight, Palette, Edit3, Sparkles } from 'lucide-react'; // Changed Zap to Palette/Edit3/Sparkles
+import ArtCard from '@/components/gallery/ArtCard';
+import { galleryItems } from '@/data/gallery';
+import { ArrowRight, Palette, Edit3, Sparkles, CheckCircle, Users } from 'lucide-react'; 
 
 export default function HomePage() {
-  const featuredArtworks = galleryItems.slice(0, 4); // Show first 4 artworks as featured
+  const featuredArtworks = galleryItems.slice(0, 4); 
 
   return (
     <div className="space-y-16">
@@ -16,12 +16,12 @@ export default function HomePage() {
       <section className="relative h-[calc(70vh-80px)] min-h-[450px] max-h-[650px] w-full flex items-center justify-center text-center rounded-xl overflow-hidden shadow-2xl">
         <Image
           src="https://placehold.co/1920x800.png"
-          alt="Banner RenArt Studio - Ilustrasi Custom"
+          alt="Banner Ren Project Studio - Ilustrasi Custom"
           layout="fill"
           objectFit="cover"
           priority
           className="brightness-50"
-          data-ai-hint="digital art portfolio" // Updated hint
+          data-ai-hint="digital art portfolio"
         />
         <div className="relative z-10 p-6 space-y-6 max-w-3xl">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-background drop-shadow-md">
@@ -53,7 +53,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-primary mb-2 flex items-center justify-center gap-2">
             <Sparkles className="h-8 w-8 text-accent" /> Contoh Karya Unggulan
           </h2>
-          <p className="text-lg text-muted-foreground">Beberapa hasil ilustrasi terbaik dari RenArt Studio.</p>
+          <p className="text-lg text-muted-foreground">Beberapa hasil ilustrasi terbaik dari Ren Project Studio.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featuredArtworks.map((art) => (
@@ -73,7 +73,7 @@ export default function HomePage() {
       {/* Why Choose Us Section */}
       <section className="space-y-8 py-12 bg-secondary rounded-lg shadow-md">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-primary mb-2">Kenapa Memilih RenArt Studio?</h2>
+          <h2 className="text-3xl font-bold text-primary mb-2">Kenapa Memilih Ren Project Studio?</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Kami berdedikasi untuk memberikan karya seni digital berkualitas tinggi yang sesuai dengan visi Anda.</p>
         </div>
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
@@ -113,7 +113,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 text-center space-y-4">
           <h2 className="text-3xl font-bold">Punya Ide Ilustrasi?</h2>
           <p className="text-lg max-w-xl mx-auto text-primary-foreground/90">
-            Jangan ragu untuk menghubungi kami. Tim RenArt Studio siap membantu mewujudkan konsep dan karakter impian Anda menjadi karya seni digital yang memukau.
+            Jangan ragu untuk menghubungi kami. Tim Ren Project Studio siap membantu mewujudkan konsep dan karakter impian Anda menjadi karya seni digital yang memukau.
           </p>
           <Button asChild size="lg" className="bg-background hover:bg-background/90 text-primary font-semibold text-lg px-8 py-3 rounded-lg shadow-md transition-transform hover:scale-105 mt-4">
             <Link href="/contact">
@@ -125,6 +125,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-// Helper component, assuming Users icon is needed
-import { Users, CheckCircle } from 'lucide-react';

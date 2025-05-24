@@ -2,7 +2,7 @@
 import ProductList from '@/components/products/ProductList';
 
 export const metadata = {
-  title: 'Katalog Produk Merchandise - RenArt Studio',
+  title: 'Katalog Produk Merchandise - Ren Project Studio',
   description: 'Jelajahi berbagai produk merchandise kami: kaos sablon, akrilik, dan lainnya. Semua produk bisa dikustomisasi dengan ilustrasi pilihan Anda atau desain dari kami.',
 };
 
@@ -15,7 +15,7 @@ export default function CatalogPage() {
           Selain jasa ilustrasi, kami juga menyediakan produk fisik berkualitas yang bisa dicetak dengan desain kustom. Sempurna untuk hadiah, koleksi, atau branding.
         </p>
          <p className="text-md text-muted-foreground mt-2 max-w-2xl mx-auto">
-          Semua produk dapat menggunakan ilustrasi yang Anda pesan dari layanan commission art kami, atau desain yang sudah Anda miliki.
+          Semua produk dapat menggunakan ilustrasi yang Anda pesan dari layanan commission art kami, atau desain yang sudah Anda miliki. Termasuk produk seperti kaos dan akrilik.
         </p>
       </section>
       

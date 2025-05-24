@@ -3,10 +3,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Palette, X } from "lucide-react"; // Changed ShoppingBag to Palette
+import { Menu, Palette, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -27,14 +27,12 @@ export default function Header() {
   }, []);
 
   if (!isMounted) {
-    // Render a basic header structure or null during SSR to avoid hydration mismatch for Sheet.
-    // This helps prevent layout shifts if the Sheet logic significantly alters the initial render.
     return (
       <header className="bg-background shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary hover:text-accent transition-colors">
             <Palette className="h-7 w-7 text-accent" />
-            RenArt Studio
+            Ren Project Studio
           </Link>
           <div className="md:hidden">
             <Button variant="ghost" size="icon" disabled>
@@ -52,7 +50,7 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary hover:text-accent transition-colors">
           <Palette className="h-7 w-7 text-accent" />
-          RenArt Studio
+          Ren Project Studio
         </Link>
 
         {/* Desktop Navigation */}
@@ -81,36 +79,35 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] p-0 bg-background">
-              <div className="flex flex-col h-full">
-                <div className="flex justify-between items-center p-4 border-b">
-                   <Link href="/" className="flex items-center gap-2 text-xl font-bold text-primary" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Palette className="h-6 w-6 text-accent" />
-                      RenArt Studio
+              <SheetHeader className="flex flex-row justify-between items-center p-4 border-b">
+                 <Link href="/" className="flex items-center gap-2 text-xl font-bold text-primary" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Palette className="h-6 w-6 text-accent" />
+                    Ren Project Studio
+                  </Link>
+                <SheetTitle className="sr-only">Menu Navigasi Utama</SheetTitle>
+                <SheetClose asChild>
+                   <Button variant="ghost" size="icon">
+                      <X className="h-6 w-6" />
+                      <span className="sr-only">Tutup menu</span>
+                    </Button>
+                </SheetClose>
+              </SheetHeader>
+              <nav className="flex flex-col space-y-2 p-4">
+                {navLinks.map((link) => (
+                  <SheetClose key={link.href} asChild>
+                    <Link
+                      href={link.href}
+                      className={cn(
+                        "text-foreground hover:text-accent hover:bg-accent/10 transition-colors block px-3 py-2 rounded-md text-base font-medium",
+                        pathname === link.href ? "text-accent bg-accent/10 font-semibold" : ""
+                      )}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
                     </Link>
-                  <SheetClose asChild>
-                     <Button variant="ghost" size="icon">
-                        <X className="h-6 w-6" />
-                        <span className="sr-only">Tutup menu</span>
-                      </Button>
                   </SheetClose>
-                </div>
-                <nav className="flex flex-col space-y-2 p-4">
-                  {navLinks.map((link) => (
-                    <SheetClose key={link.href} asChild>
-                      <Link
-                        href={link.href}
-                        className={cn(
-                          "text-foreground hover:text-accent hover:bg-accent/10 transition-colors block px-3 py-2 rounded-md text-base font-medium",
-                          pathname === link.href ? "text-accent bg-accent/10 font-semibold" : ""
-                        )}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {link.label}
-                      </Link>
-                    </SheetClose>
-                  ))}
-                </nav>
-              </div>
+                ))}
+              </nav>
             </SheetContent>
           </Sheet>
         </div>
