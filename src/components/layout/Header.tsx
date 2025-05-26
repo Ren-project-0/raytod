@@ -8,16 +8,14 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@/contexts/AuthContext";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignInButton,
+  useUser,
+} from "@clerk/nextjs";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"; // Still useful for other parts or fallback display
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -31,57 +29,35 @@ export default function Header() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  const { user, loading, signInWithGoogle, signOutUser } = useAuth();
+  const { isLoaded } = useUser(); // useUser hook to check if Clerk is loaded
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   const renderAuthControls = () => {
-    if (loading) {
+    if (!isLoaded && isMounted) { // Show loader only if mounted and Clerk is not yet loaded
       return <Button variant="ghost" size="icon" disabled><Loader2 className="h-5 w-5 animate-spin" /></Button>;
     }
-    if (user) {
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-9 w-9 rounded-full">
-              <Avatar className="h-9 w-9">
-                <AvatarImage src={user.photoURL || undefined} alt={user.displayName || "User"} />
-                <AvatarFallback>{user.displayName ? user.displayName.charAt(0).toUpperCase() : <UserCircle size={20}/>}</AvatarFallback>
-              </Avatar>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56" align="end" forceMount>
-            <DropdownMenuLabel className="font-normal">
-              <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium leading-none">{user.displayName || "Pengguna"}</p>
-                <p className="text-xs leading-none text-muted-foreground">
-                  {user.email}
-                </p>
-              </div>
-            </DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {/* Add admin links here if user is admin */}
-            {/* <DropdownMenuItem asChild><Link href="/admin/dashboard">Dashboard Admin</Link></DropdownMenuItem> */}
-            {/* <DropdownMenuSeparator /> */}
-            <DropdownMenuItem onClick={signOutUser} className="cursor-pointer">
-              <LogOut className="mr-2 h-4 w-4" />
-              <span>Logout</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    }
     return (
-      <Button variant="outline" onClick={signInWithGoogle}>
-        <LogIn className="mr-2 h-4 w-4" /> Login dengan Google
-      </Button>
+      <>
+        <SignedIn>
+          <UserButton afterSignOutUrl="/" />
+        </SignedIn>
+        <SignedOut>
+          <SignInButton mode="modal">
+            <Button variant="outline">
+              <LogIn className="mr-2 h-4 w-4" /> Login dengan Google
+            </Button>
+          </SignInButton>
+        </SignedOut>
+      </>
     );
   };
-
+  
+  // Fallback for SSR or when Clerk is not fully initialized to prevent layout shifts
   if (!isMounted) {
-    return (
+     return (
       <header className="bg-background shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-primary hover:text-accent transition-colors">
@@ -89,7 +65,7 @@ export default function Header() {
             Ren Project Studio
           </Link>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" disabled><Loader2 className="h-5 w-5 animate-spin" /></Button>
+            <div className="h-9 w-9 rounded-full bg-muted animate-pulse" /> {/* Placeholder for UserButton */}
             <div className="md:hidden">
               <Button variant="ghost" size="icon" disabled>
                 <Menu className="h-6 w-6" />
@@ -100,6 +76,7 @@ export default function Header() {
       </header>
     );
   }
+
 
   return (
     <header className="bg-background shadow-md sticky top-0 z-50">
@@ -144,7 +121,7 @@ export default function Header() {
                     <Palette className="h-6 w-6 text-accent" />
                     Ren Project Studio
                   </Link>
-                <SheetTitle className="sr-only">Menu Navigasi Utama</SheetTitle> {/* Corrected */}
+                <SheetTitle className="sr-only">Menu Navigasi Utama</SheetTitle>
                 <SheetClose asChild>
                    <Button variant="ghost" size="icon">
                       <X className="h-6 w-6" />
