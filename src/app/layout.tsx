@@ -7,7 +7,7 @@ import Footer from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ClerkProvider } from '@clerk/nextjs';
-import { idID } from "@clerk/localizations";
+
 
 
 const geistSans = Geist({
@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider localization={idID}>
+    <ClerkProvider >
       <html lang="id">
         <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen bg-background text-foreground`}>
           <AuthProvider>
