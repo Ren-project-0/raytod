@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider >
+    <ClerkProvider  publishableKey={'pk_test_b25lLXJhcHRvci01OC5jbGVyay5hY2NvdW50cy5kZXYk'}>
       <html lang="id">
         <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased flex flex-col min-h-screen bg-background text-foreground`}>
           <AuthProvider>
